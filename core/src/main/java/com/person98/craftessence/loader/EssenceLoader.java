@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.*;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -126,15 +126,30 @@ public class EssenceLoader {
         try {
             Class<?> clazz = essenceClassLoader.loadClass(className);
 
-            // Check if the class extends Essence
-            if (Essence.class.isAssignableFrom(clazz)) {
-                Essence essenceInstance = (Essence) clazz.getDeclaredConstructor().newInstance();
+            // Handle inner classes or non-static inner classes
+            if (clazz.getEnclosingClass() != null && !Modifier.isStatic(clazz.getModifiers())) {
+                // If the class is non-static and has an enclosing class, create an instance of the outer class first
+                Class<?> outerClass = clazz.getEnclosingClass();
+                Object outerInstance = outerClass.getDeclaredConstructor().newInstance();
+                Constructor<?> innerConstructor = clazz.getDeclaredConstructor(outerClass);
+                Object instance = innerConstructor.newInstance(outerInstance);
 
-                // Register the Essence instance in the Instances core
-                Instances.register(clazz.asSubclass(Essence.class), essenceInstance);
+                // Register inner class instance if it implements Essence
+                if (instance instanceof Essence) {
+                    Instances.register(clazz.asSubclass(Essence.class), (Essence) instance);
+                    loadedEssences.add((Essence) instance);
+                }
+            } else {
+                // For static classes or regular classes
+                if (Essence.class.isAssignableFrom(clazz)) {
+                    Essence essenceInstance = (Essence) clazz.getDeclaredConstructor().newInstance();
 
-                // Add the instance to the loaded essences list
-                loadedEssences.add(essenceInstance);
+                    // Register the Essence instance in the Instances core
+                    Instances.register(clazz.asSubclass(Essence.class), essenceInstance);
+
+                    // Add the instance to the loaded essences list
+                    loadedEssences.add(essenceInstance);
+                }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
