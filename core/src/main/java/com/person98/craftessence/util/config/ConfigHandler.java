@@ -3,6 +3,7 @@ package com.person98.craftessence.util.config;
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.util.annotations.Configurable;
 import com.person98.craftessence.util.logging.EssenceLogger;
+import com.person98.craftessence.util.builder.IBuilder;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -36,6 +37,9 @@ public class ConfigHandler {
                 Map<String, Object> data = yaml.load(input);
                 T instance = clazz.getDeclaredConstructor().newInstance();
                 applyConfig(instance, data);
+
+                // Log a message when the configuration is successfully loaded
+                EssenceLogger.Info("Loaded " + fileName + ".yml for " + essenceName);
                 return instance;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -56,7 +60,7 @@ public class ConfigHandler {
                 T defaultInstance = clazz.getDeclaredConstructor().newInstance();  // Create default instance
                 Map<String, Object> data = serializeToMap(defaultInstance);
                 yaml.dump(data, writer);
-                EssenceLogger.Info("Created default config file: " + configFile.getAbsolutePath());
+                EssenceLogger.Info("Created default " + fileName + ".yml for " + essenceName);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -85,7 +89,11 @@ public class ConfigHandler {
         for (Field field : clazz.getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                data.put(field.getName(), field.get(instance));
+                Object value = field.get(instance);
+                if (value instanceof IBuilder) {
+                    value = ((IBuilder<?>) value).build();
+                }
+                data.put(field.getName(), value);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -95,7 +103,7 @@ public class ConfigHandler {
 
     // Get the config file location for the essence
     private File getConfigFile(String fileName) {
-        File essenceDataFolder = new File(CraftEssence.getInstance().getDataFolder(), "essences/data/" + essenceName);
+        File essenceDataFolder = new File(CraftEssence.getInstance().getDataFolder(), "data/" + essenceName);
         if (!essenceDataFolder.exists()) {
             essenceDataFolder.mkdirs();
         }
