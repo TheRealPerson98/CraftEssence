@@ -7,6 +7,13 @@ subprojects {
     repositories {
         mavenCentral()
         maven("https://papermc.io/repo/repository/maven-public/")
+        maven {
+            url = uri("https://nexus.person98.com/repository/public/")
+            credentials {
+                username = System.getenv("NEXUS_USERNAME")
+                password = System.getenv("NEXUS_PASSWORD")
+            }
+        }
     }
 
     dependencies {
