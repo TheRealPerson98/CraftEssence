@@ -10,8 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.*;
-import java.net.URL;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +20,14 @@ import java.util.jar.JarFile;
 public class EssenceLoader {
 
     private static final String ESSENCE_FOLDER = "essences";
-    private List<Essence> loadedEssences = new ArrayList<>();
+    private final List<Essence> loadedEssences = new ArrayList<>();
+    private final ClassHolder classHolder = new ClassHolder();  // New ClassHolder to manage loaded classes
+    private final JarHolder jarHolder = new JarHolder();  // New JarHolder to manage JAR files
+
     private URLClassLoader essenceClassLoader;
 
-    // This will load essences after checking external dependencies and internal order
     public void loadEssencesInOrder() {
-        // Get all essences from the folder
+        // Load the essences
         List<Essence> essences = loadEssences();
 
         // Create a repeating task to check for external dependencies every 1 second
@@ -35,53 +36,45 @@ public class EssenceLoader {
             public void run() {
                 if (checkExternalDependencies(essences)) {
                     EssenceLogger.Info("All external dependencies are met. Loading essences...");
-                    cancel(); // Stop the repeating task
+                    cancel();
 
                     // Process internal dependencies and load essences
                     LoadOrder loadOrder = new LoadOrder(essences);
-                    loadOrder.loadInOrder(); // Load essences in proper order
+                    loadOrder.loadInOrder();
                 } else {
                     EssenceLogger.Info("Waiting for external dependencies...");
                 }
             }
-        }.runTaskTimer(CraftEssence.getInstance(), 20, 20); // Schedule every 1 second (20 ticks)
+        }.runTaskTimer(CraftEssence.getInstance(), 20, 20);
     }
 
-    // Load the essences but do not enable them yet, we'll handle that after dependency checks
+    // Load the essences from JAR files
     private List<Essence> loadEssences() {
-        // Get the plugin folder location and append "essences"
         File pluginFolder = new File(CraftEssence.getInstance().getDataFolder(), ESSENCE_FOLDER);
 
         EssenceLogger.Info("Loading essences from " + pluginFolder.getAbsolutePath());
 
-        // Create the essences folder if it does not exist
-        if (!pluginFolder.exists()) {
-            if (pluginFolder.mkdirs()) {
-                EssenceLogger.Info("Essences folder created at " + pluginFolder.getAbsolutePath());
-            } else {
-                EssenceLogger.Info("Failed to create essences folder at " + pluginFolder.getAbsolutePath());
-                return loadedEssences;
-            }
+        if (!pluginFolder.exists() && !pluginFolder.mkdirs()) {
+            EssenceLogger.Info("Failed to create essences folder.");
+            return loadedEssences;
         }
 
-        // Get all the JAR files in the essences folder
         File[] jarFiles = pluginFolder.listFiles((dir, name) -> name.endsWith(".jar"));
 
         if (jarFiles != null && jarFiles.length > 0) {
-            // Load each JAR and find Essence classes
-            List<URL> jarUrls = new ArrayList<>();
             for (File jarFile : jarFiles) {
                 try {
-                    jarUrls.add(jarFile.toURI().toURL());
+                    // Add each JAR file to the JarHolder
+                    jarHolder.addJarFile(jarFile);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
 
-            // Create one ClassLoader for all the essences
-            essenceClassLoader = new URLClassLoader(jarUrls.toArray(new URL[0]), this.getClass().getClassLoader());
+            // Create a ClassLoader for the essences using the JAR URLs from the JarHolder
+            essenceClassLoader = new URLClassLoader(jarHolder.getJarUrls(), this.getClass().getClassLoader());
 
-            // Load each essence from the JARs
+            // Load classes from each JAR
             for (File jarFile : jarFiles) {
                 try (JarFile jar = new JarFile(jarFile)) {
                     jar.stream()
@@ -101,58 +94,38 @@ public class EssenceLoader {
     // Check if external dependencies are met
     private boolean checkExternalDependencies(List<Essence> essences) {
         for (Essence essence : essences) {
-            EssenceInfo info = essence.getClass().getAnnotation(EssenceInfo.class);
-            if (info != null) {
-                for (String externalDependency : info.externalDependencies()) {
-                    if (!isExternalDependencyLoaded(externalDependency)) {
-                        EssenceLogger.Info("External dependency " + externalDependency + " is not loaded!");
-                        return false; // Stop loading if a dependency isn't met
-                    }
+            String[] externalDependencies = essence.getClass().getAnnotation(EssenceInfo.class).externalDependencies();
+            for (String externalDependency : externalDependencies) {
+                if (!isExternalDependencyLoaded(externalDependency)) {
+                    EssenceLogger.Info("External dependency " + externalDependency + " is not loaded!");
+                    return false;
                 }
             }
         }
         return true;
     }
 
-    // Check if an external plugin is loaded in the server
     private boolean isExternalDependencyLoaded(String externalPlugin) {
         return Bukkit.getPluginManager().getPlugin(externalPlugin) != null;
     }
 
-    // Load essence class from JAR and register its instance
+    // Load and instantiate essence class from a JAR entry
     private void loadEssenceClass(JarFile jarFile, JarEntry entry) {
-        // Convert the jar entry name to a class name
         String className = entry.getName().replace('/', '.').replace(".class", "");
-        try {
-            Class<?> clazz = essenceClassLoader.loadClass(className);
+        if (!classHolder.isClassLoaded(className)) {
+            try {
+                Class<?> clazz = essenceClassLoader.loadClass(className);
+                classHolder.addClass(className, clazz);  // Store the loaded class in ClassHolder
 
-            // Handle inner classes or non-static inner classes
-            if (clazz.getEnclosingClass() != null && !Modifier.isStatic(clazz.getModifiers())) {
-                // If the class is non-static and has an enclosing class, create an instance of the outer class first
-                Class<?> outerClass = clazz.getEnclosingClass();
-                Object outerInstance = outerClass.getDeclaredConstructor().newInstance();
-                Constructor<?> innerConstructor = clazz.getDeclaredConstructor(outerClass);
-                Object instance = innerConstructor.newInstance(outerInstance);
-
-                // Register inner class instance if it implements Essence
-                if (instance instanceof Essence) {
-                    Instances.register(clazz.asSubclass(Essence.class), (Essence) instance);
-                    loadedEssences.add((Essence) instance);
-                }
-            } else {
-                // For static classes or regular classes
                 if (Essence.class.isAssignableFrom(clazz)) {
                     Essence essenceInstance = (Essence) clazz.getDeclaredConstructor().newInstance();
-
-                    // Register the Essence instance in the Instances core
                     Instances.register(clazz.asSubclass(Essence.class), essenceInstance);
-
-                    // Add the instance to the loaded essences list
                     loadedEssences.add(essenceInstance);
                 }
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            e.printStackTrace();
         }
     }
 }

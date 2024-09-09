@@ -1,5 +1,6 @@
 package com.person98.commonsessence;
 
+import com.person98.commonsessence.conf.LangConf;
 import com.person98.craftessence.core.Essence;
 import com.person98.craftessence.core.Instances;
 import com.person98.craftessence.util.annotations.EssenceInfo;
@@ -19,13 +20,14 @@ public class CommonsEssence implements Essence {
     @Override
     public void onPreEnable() {
         EssenceLogger.Info("CommonsEssence is preparing to enable...");
-
+        this.loadConfig(LangConf.class);
     }
 
     @Override
     public void onEnable() {
         EssenceLogger.Info("CommonsEssence is now enabled!");
         // Add enable logic here
+        EssenceLogger.Info(this.getConfig(LangConf.class).getTest());
     }
 
     @Override
