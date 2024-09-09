@@ -2,6 +2,7 @@ package com.person98.craftessence.loader;
 
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.core.Essence;
+import com.person98.craftessence.core.Instances;
 import com.person98.craftessence.util.annotations.EssenceInfo;
 import com.person98.craftessence.util.logging.EssenceLogger;
 import org.bukkit.Bukkit;
@@ -118,7 +119,7 @@ public class EssenceLoader {
         return Bukkit.getPluginManager().getPlugin(externalPlugin) != null;
     }
 
-    // Load essence class from JAR
+    // Load essence class from JAR and register its instance
     private void loadEssenceClass(JarFile jarFile, JarEntry entry) {
         // Convert the jar entry name to a class name
         String className = entry.getName().replace('/', '.').replace(".class", "");
@@ -128,6 +129,11 @@ public class EssenceLoader {
             // Check if the class extends Essence
             if (Essence.class.isAssignableFrom(clazz)) {
                 Essence essenceInstance = (Essence) clazz.getDeclaredConstructor().newInstance();
+
+                // Register the Essence instance in the Instances core
+                Instances.register(clazz.asSubclass(Essence.class), essenceInstance);
+
+                // Add the instance to the loaded essences list
                 loadedEssences.add(essenceInstance);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

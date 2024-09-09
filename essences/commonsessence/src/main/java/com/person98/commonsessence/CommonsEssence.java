@@ -19,8 +19,6 @@ public class CommonsEssence implements Essence {
     @Override
     public void onPreEnable() {
         EssenceLogger.Info("CommonsEssence is preparing to enable...");
-        // Add pre-enable logic here
-        Instances.register(CommonsEssence.class, this);
 
     }
 
