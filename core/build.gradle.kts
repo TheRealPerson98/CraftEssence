@@ -24,7 +24,8 @@ java {
 tasks {
     shadowJar {
         archiveFileName.set("CraftEssence.jar") // Set the name of the output jar
-        archiveClassifier.set("") // This ensures no additional classifier is added to the jar name
+        archiveClassifier.set("") // Ensure no additional classifier is added to the jar name
+        destinationDirectory.set(file("$buildDir/../../releases/Core/")) // Set the custom output directory
         mergeServiceFiles()
     }
 
