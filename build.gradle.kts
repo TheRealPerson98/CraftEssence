@@ -2,21 +2,24 @@ group = "com.person98"
 version = "1.0"
 
 subprojects {
-    apply(plugin = "java")  // Ensure the Java plugin is applied in all subprojects
+    apply(plugin = "java")
 
     repositories {
         mavenCentral()
         maven("https://papermc.io/repo/repository/maven-public/")
     }
 
-    // Common Java configuration for all subprojects
+    dependencies {
+        "compileOnly"("org.projectlombok:lombok:1.18.34") // Add Lombok as compile-only dependency
+        "annotationProcessor"("org.projectlombok:lombok:1.18.34") // Ensure annotation processing works
+    }
+
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
         sourceCompatibility = "21"
         targetCompatibility = "21"
     }
 
-    // Java toolchain configuration should be placed in the java extension block
     configure<JavaPluginExtension> {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(21))

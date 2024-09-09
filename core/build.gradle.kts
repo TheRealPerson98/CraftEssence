@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("maven-publish")
 }
 
 group = "com.person98"
@@ -23,13 +24,32 @@ java {
 
 tasks {
     shadowJar {
-        archiveFileName.set("CraftEssence.jar") // Set the name of the output jar
-        archiveClassifier.set("") // Ensure no additional classifier is added to the jar name
-        destinationDirectory.set(file("$buildDir/../../releases/Core/")) // Set the custom output directory
+        archiveFileName.set("CraftEssence.jar")
+        archiveClassifier.set("")
+        destinationDirectory.set(file("$buildDir/../../releases/Core/"))
         mergeServiceFiles()
     }
-
     build {
         dependsOn(shadowJar)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifact(tasks.shadowJar.get()) {
+                artifactId = "CraftEssence" // Set the artifact ID to "CraftEssence"
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "Public"
+            url = uri("https://nexus.person98.com/repository/public")
+            credentials {
+                username = System.getenv("NEXUS_USERNAME")
+                password = System.getenv("NEXUS_PASSWORD")
+            }
+        }
     }
 }
