@@ -1,0 +1,6 @@
+name: CraftEssence
+version: '1.0'
+main: com.person98.craftessence.CraftEssence
+api-version: '1.21'
+authors: [ Person98 ]
+website: Person98.com
