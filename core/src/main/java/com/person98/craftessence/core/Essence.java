@@ -8,10 +8,8 @@ import java.util.Map;
 
 public interface Essence {
 
-    // Store loaded configuration objects
     Map<Class<?>, Object> configMap = new HashMap<>();
 
-    // Method to load a configuration class
     default <T> void loadConfig(Class<T> clazz) {
         Configurable configurable = clazz.getAnnotation(Configurable.class);
         if (configurable != null) {
@@ -21,13 +19,11 @@ public interface Essence {
         }
     }
 
-    // Method to retrieve a loaded configuration class
     @SuppressWarnings("unchecked")
     default <T> T getConfig(Class<T> clazz) {
         return (T) configMap.get(clazz);
     }
 
-    // Other methods for the lifecycle of Essence
     void onPreEnable();
 
     void onEnable();

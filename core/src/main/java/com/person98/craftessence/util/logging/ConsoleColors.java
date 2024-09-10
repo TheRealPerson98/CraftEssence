@@ -1,5 +1,10 @@
 package com.person98.craftessence.util.logging;
 
+/**
+ * The ConsoleColors class provides static constants for ANSI escape codes
+ * that can be used to change the color and style of console output in
+ * Java programs.
+ */
 public class ConsoleColors {
 
     // Reset

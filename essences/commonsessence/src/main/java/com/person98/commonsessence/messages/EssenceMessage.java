@@ -66,19 +66,6 @@ public class EssenceMessage {
         return fadeOut;
     }
 
-    // Send the message, title, and sound to the player
-    public void sendTo(Player player) {
-        if (message != null) {
-            player.sendMessage(message);
-        }
-        if (sound != null) {
-            player.playSound(player.getLocation(), sound, volume, pitch);
-        }
-        if (title != null || subtitle != null) {
-            player.sendTitle(title != null ? title : "", subtitle != null ? subtitle : "", fadeIn, stay, fadeOut);
-        }
-    }
-
     // Builder class
     public static class Builder implements IBuilder<EssenceMessage> {
         private String message;
