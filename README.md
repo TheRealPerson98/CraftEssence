@@ -1,42 +1,83 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b9e4e582-cce9-491c-9c87-97db0ac8c87d" alt="Asset 1">
+</p>
 
-![Asset 1](https://github.com/user-attachments/assets/b9e4e582-cce9-491c-9c87-97db0ac8c87d)
+<h1 align="center">CraftEssence</h1>
+<p align="center">
+  <strong>A module-based core plugin, designed to eliminate server bloat and offer a simple, flexible foundation for Minecraft developers.</strong>
+</p>
 
-Welcome to **CraftEssence** - A module-based core plugin, specifically designed for Minecraft servers with a primary aim - *to eliminate server bloat and offer a simple, flexible foundation for developers*.
+<p align="center">
+  <a href="https://github.com/TheRealPerson98/CraftEssence/stargazers">
+    <img src="https://img.shields.io/github/stars/TheRealPerson98/CraftEssence.svg?style=social&label=Star">
+  </a>
+  <a href="https://github.com/TheRealPerson98/CraftEssence/network/members">
+    <img src="https://img.shields.io/github/forks/TheRealPerson98/CraftEssence.svg?style=social&label=Fork">
+  </a>
+  <a href="https://github.com/TheRealPerson98/CraftEssence/issues">
+    <img src="https://img.shields.io/github/issues/TheRealPerson98/CraftEssence.svg?style=plastic">
+  </a>
+  <a href="https://github.com/TheRealPerson98/CraftEssence/pulls">
+    <img src="https://img.shields.io/github/issues-pr/TheRealPerson98/CraftEssence.svg?style=plastic">
+  </a>
+  <a href="https://www.codefactor.io/repository/github/therealperson98/craftessence">
+    <img src="https://www.codefactor.io/repository/github/therealperson98/craftessence/badge">
+  </a>
+</p>
 
-## **The Essence of CraftEssence**
+---
 
-The purpose of CraftEssence is to deliver a modern, efficient alternative to feature-heavy plugins. We are here to break the cycle of performance cost, complexity and limited customizations in return for providing solutions to each server need.
+<p align="center">
+  <a href="https://github.com/TheRealPerson98/CraftEssence/issues">Report a Bug</a> • 
+  <a href="https://github.com/TheRealPerson98/CraftEssence/issues">Request a Feature</a> • 
+  <a href="https://github.com/TheRealPerson98/CraftEssence/issues">Request an Essence</a>
+</p>
 
-What sets CraftEssence apart is its modularity, which enables server administrators to pick and choose features, thus reducing unnecessary resource consumption. The essence lies in getting what you need!
+## 🌟 **The Essence of CraftEssence**
 
-## **Features**
+CraftEssence is designed to provide a modern and efficient alternative to heavy, bloated server plugins. The goal is simple: provide solutions for every server’s needs without sacrificing performance or customization.
+
+CraftEssence is modular, enabling server administrators to pick and choose features, reducing unnecessary resource consumption. The true **essence** lies in giving you what you need!
+
+## 🚀 **Features**
 
 ### Modular Design
-CraftEssence's heart is a core that allows for plugins (branded as *Essences*) to be added or removed avoiding redundant features bloating up the server.
+CraftEssence's core allows for plugins (called *Essences*) to be added or removed, preventing your server from being overloaded with unused features.
 
 ### Official Essences
-We offer officially supported add-ons referred to as *Essences*. These provide core functionalities that server owners can enable without any fuss.
+We offer a collection of officially supported *Essences* that provide essential functionalities to enhance your server's performance.
 
 ### Community & Custom Essences
-Customize your server's functionality with public or third-party Essences. There are no restrictions on what they can be named.
+Customize your server even further with public or third-party *Essences*—no limitations on what they can be named.
 
 ### Developer-Friendly Framework
-CraftEssence, the go-to choice for both rookies and experienced developers, offers a simplified, streamlined API to create sturdy server plugins without performance or feature creep.
+CraftEssence is ideal for both beginner and experienced developers. Its streamlined API simplifies plugin creation while ensuring excellent performance and no feature creep.
 
-## **Getting Started with CraftEssence**
+## 🎮 **Getting Started with CraftEssence**
 
-1. **Initial Setup**: Download and install the CraftEssence core.
-2. **Choose Your Essence**: Browse and select from among a range of provided *Essences* or create your own using the intuitive API.
-3. **Tailor At Will**: Add or remove Essences as per your server's needs.
+1. **Download & Install**: Start by installing the CraftEssence core.
+2. **Select Your Essences**: Browse from a range of available *Essences* or create your own.
+3. **Customize**: Tailor your server’s setup by adding or removing *Essences* to match your needs.
 
-## **Creating an Essence**
+## 💻 **Creating an Essence**
 
-Developers' playground! Follow the guidelines detailed in the API documentation and create plus share your own essences with ease.
+Are you a developer? Dive into our API documentation and create your own *Essences* with ease. Share your creations with the community to help others customize their servers.
 
-## **Contributing to CraftEssence**
+## 🤝 **Contributing to CraftEssence**
 
-CraftEssence appreciates contributions! Feel free to submit pull requests for improvements, optimizations, or even a new essence. We aim to develop a lightweight yet highly customizable community for Minecraft servers.
+We welcome contributions! Submit pull requests to improve the plugin, add new *Essences*, or optimize the existing ones. Help us create a lightweight yet highly customizable Minecraft server community.
 
-## **License**
+## 📜 **License**
 
-For further information, please refer to the `LICENSE`.
+For more information, see the [LICENSE](LICENSE) file.
+
+---
+
+<p align="center">
+  <a href="https://github.com/TheRealPerson98/CraftEssence/stargazers">
+    <img src="https://img.shields.io/github/stars/TheRealPerson98/CraftEssence.svg?style=social&label=Star">
+  </a>
+  <a href="https://github.com/TheRealPerson98/CraftEssence/network/members">
+    <img src="https://img.shields.io/github/forks/TheRealPerson98/CraftEssence.svg?style=social&label=Fork">
+  </a>
+</p>
