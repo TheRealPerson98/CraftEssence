@@ -1,7 +1,6 @@
 package com.person98.commonsessence.scheduler;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import java.util.concurrent.*;
 
@@ -14,40 +13,42 @@ public class EssenceAsyncScheduler implements EssenceScheduler {
     }
 
     @Override
-    public void run(Runnable runnable) {
-        CompletableFuture.runAsync(() -> {
+    public EssenceTask run(Runnable runnable) {
+        Future<?> future = CompletableFuture.runAsync(() -> {
             try {
                 runnable.run();
             } catch (Exception e) {
-                // Log the error with plugin's logger (could use your PLogger utility)
                 Bukkit.getLogger().severe("Exception in async task: " + e.getMessage());
             }
         }, executorService);
+        return new CancellableEssenceTask(future);
     }
 
     @Override
-    public void runLater(Runnable runnable, long delay, TimeUnit unit) {
-        executorService.schedule(() -> {
+    public EssenceTask runLater(Runnable runnable, long delay, TimeUnit unit) {
+        ScheduledFuture<?> future = executorService.schedule(() -> {
             try {
                 runnable.run();
             } catch (Exception e) {
                 Bukkit.getLogger().severe("Exception in scheduled task: " + e.getMessage());
             }
         }, delay, unit);
+        return new CancellableEssenceTask(future);
     }
 
     @Override
-    public void runRepeating(Runnable runnable, long initialDelay, long interval, TimeUnit unit) {
-        executorService.scheduleAtFixedRate(() -> {
+    public EssenceTask runRepeating(Runnable runnable, long initialDelay, long interval, TimeUnit unit) {
+        ScheduledFuture<?> future = executorService.scheduleAtFixedRate(() -> {
             try {
                 runnable.run();
             } catch (Exception e) {
                 Bukkit.getLogger().severe("Exception in repeating task: " + e.getMessage());
             }
         }, initialDelay, interval, unit);
+        return new CancellableEssenceTask(future);
     }
 
     public void shutdown() {
-        executorService.shutdown();  // Ensure graceful shutdown when stopping the plugin
+        executorService.shutdown();
     }
 }
