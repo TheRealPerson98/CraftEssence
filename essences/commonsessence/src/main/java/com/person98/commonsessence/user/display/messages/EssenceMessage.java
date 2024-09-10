@@ -1,6 +1,6 @@
 package com.person98.commonsessence.user.display.messages;
 
-import com.person98.commonsessence.uitl.ComponentUtil;
+import com.person98.commonsessence.util.ComponentUtil;
 import com.person98.commonsessence.user.User;
 import com.person98.commonsessence.user.display.IDisplayable;
 import com.person98.commonsessence.user.display.sound.ConfigurableSound;

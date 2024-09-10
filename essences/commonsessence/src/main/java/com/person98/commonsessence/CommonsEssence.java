@@ -2,8 +2,10 @@ package com.person98.commonsessence;
 
 import com.person98.commonsessence.conf.LangConf;
 import com.person98.commonsessence.event.Events;
+import com.person98.commonsessence.scheduler.EssenceSchedulers;
 import com.person98.commonsessence.user.UserManager;
 import com.person98.commonsessence.user.event.UserListener;
+import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.core.Essence;
 import com.person98.craftessence.core.Instances;
 import com.person98.craftessence.util.annotations.EssenceInfo;
@@ -29,6 +31,7 @@ public class CommonsEssence implements Essence {
 
     @Override
     public void onEnable() {
+        EssenceSchedulers.initialize(CraftEssence.getInstance(), 4);
         new UserListener(this);
 
         Events.hook(PlayerJoinEvent.class, event -> {

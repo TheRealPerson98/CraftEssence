@@ -1,4 +1,4 @@
-package com.person98.commonsessence.uitl;
+package com.person98.commonsessence.util;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
