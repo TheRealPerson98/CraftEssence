@@ -1,5 +1,6 @@
 package com.person98.commonsessence.user.display.firework;
 
+import com.person98.commonsessence.scheduler.EssenceSchedulers;
 import com.person98.commonsessence.user.User;
 import com.person98.commonsessence.user.display.IDisplayable;
 import com.person98.craftessence.util.builder.IBuilder;
@@ -15,6 +16,7 @@ import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ConfigurableFirework implements IDisplayable {
     private final Type type;
@@ -54,24 +56,30 @@ public class ConfigurableFirework implements IDisplayable {
         Location location = player.getLocation();
         World world = player.getWorld();
 
-        // Spawn firework at player's location
-        Firework firework = world.spawn(location, Firework.class);
-        FireworkMeta fireworkMeta = firework.getFireworkMeta();
+        Runnable fireworkRunnable = () -> {
+            // Spawn firework at player's location
+            Firework firework = world.spawn(location, Firework.class);
+            FireworkMeta fireworkMeta = firework.getFireworkMeta();
 
-        // Apply firework effects
-        FireworkEffect.Builder effectBuilder = FireworkEffect.builder()
-                .with(this.type)
-                .flicker(this.flicker)
-                .trail(this.trail)
-                .withColor(this.color)
-                .withFade(this.fadeColor);
+            // Apply firework effects
+            FireworkEffect.Builder effectBuilder = FireworkEffect.builder()
+                    .with(this.type)
+                    .flicker(this.flicker)
+                    .trail(this.trail)
+                    .withColor(this.color)
+                    .withFade(this.fadeColor);
 
-        fireworkMeta.addEffect(effectBuilder.build());
-        fireworkMeta.setPower(this.power);
-        firework.setFireworkMeta(fireworkMeta);
+            fireworkMeta.addEffect(effectBuilder.build());
+            fireworkMeta.setPower(this.power);
+            firework.setFireworkMeta(fireworkMeta);
+        };
 
         if (this.delay > 0) {
-
+            // Use EssenceSchedulers to run the firework launch after the specified delay
+            EssenceSchedulers.sync().runLater(fireworkRunnable, this.delay, TimeUnit.SECONDS);
+        } else {
+            // Run immediately if no delay
+            fireworkRunnable.run();
         }
     }
 
@@ -84,7 +92,6 @@ public class ConfigurableFirework implements IDisplayable {
         private boolean trail = false;
         private boolean flicker = false;
         private List<FireworkEffect> effects;
-        private Plugin plugin;
 
         public Builder withType(Type type) {
             this.type = type;
@@ -123,11 +130,6 @@ public class ConfigurableFirework implements IDisplayable {
 
         public Builder withEffects(List<FireworkEffect> effects) {
             this.effects = effects;
-            return this;
-        }
-
-        public Builder withPlugin(Plugin plugin) {
-            this.plugin = plugin;
             return this;
         }
 
