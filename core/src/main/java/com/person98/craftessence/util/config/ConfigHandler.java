@@ -2,15 +2,12 @@ package com.person98.craftessence.util.config;
 
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.util.annotations.Configurable;
-import com.person98.craftessence.util.logging.EssenceLogger;
 import com.person98.craftessence.util.builder.IBuilder;
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
+import com.person98.craftessence.util.logging.EssenceLogger;
+import com.person98.craftessence.util.yaml.YamlParser;
 
-import java.io.*;
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
 
 public class ConfigHandler {
 
@@ -32,16 +29,11 @@ public class ConfigHandler {
                 saveDefaultConfig(clazz);
             }
 
-            Yaml yaml = createYamlInstance();
-            try (FileInputStream input = new FileInputStream(configFile)) {
-                Map<String, Object> data = yaml.load(input);
-                T instance = clazz.getDeclaredConstructor().newInstance();
-                applyConfig(instance, data);
-
-                // Log a message when the configuration is successfully loaded
+            try {
+                T configInstance = YamlParser.loadYaml(configFile, clazz);
                 EssenceLogger.Info("Loaded " + fileName + ".yml for " + essenceName);
-                return instance;
-            } catch (Exception e) {
+                return configInstance;
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -55,50 +47,14 @@ public class ConfigHandler {
             String fileName = configurable.fileName();
             File configFile = getConfigFile(fileName);
 
-            Yaml yaml = createYamlInstance();
-            try (FileWriter writer = new FileWriter(configFile)) {
-                T defaultInstance = clazz.getDeclaredConstructor().newInstance();  // Create default instance
-                Map<String, Object> data = serializeToMap(defaultInstance);
-                yaml.dump(data, writer);
+            try {
+                T defaultInstance = clazz.getDeclaredConstructor().newInstance();
+                YamlParser.saveYaml(configFile, defaultInstance);
                 EssenceLogger.Info("Created default " + fileName + ".yml for " + essenceName);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    // Apply loaded data to the instance
-    private <T> void applyConfig(T instance, Map<String, Object> data) {
-        Class<?> clazz = instance.getClass();
-        for (Field field : clazz.getDeclaredFields()) {
-            field.setAccessible(true);
-            if (data.containsKey(field.getName())) {
-                try {
-                    field.set(instance, data.get(field.getName()));
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    // Serialize the fields of the instance into a map
-    private <T> Map<String, Object> serializeToMap(T instance) {
-        Map<String, Object> data = new HashMap<>();
-        Class<?> clazz = instance.getClass();
-        for (Field field : clazz.getDeclaredFields()) {
-            field.setAccessible(true);
-            try {
-                Object value = field.get(instance);
-                if (value instanceof IBuilder) {
-                    value = ((IBuilder<?>) value).build();
-                }
-                data.put(field.getName(), value);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return data;
     }
 
     // Get the config file location for the essence
@@ -108,14 +64,5 @@ public class ConfigHandler {
             essenceDataFolder.mkdirs();
         }
         return new File(essenceDataFolder, fileName + ".yml");
-    }
-
-    // Create a Yaml instance for serialization/deserialization
-    private Yaml createYamlInstance() {
-        DumperOptions options = new DumperOptions();
-        options.setIndent(2);
-        options.setPrettyFlow(true);
-        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-        return new Yaml(options);
     }
 }

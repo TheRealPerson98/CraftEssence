@@ -1,22 +1,30 @@
 package com.person98.commonsessence.conf;
 
-import com.person98.commonsessence.messages.EssenceMessage;
+
+import com.person98.commonsessence.user.display.messages.EssenceMessage;
+import com.person98.commonsessence.user.display.sound.ConfigurableSound;
+import com.person98.commonsessence.user.display.title.ConfigurableTitle;
 import com.person98.craftessence.util.annotations.Configurable;
 import org.bukkit.Sound;
-
-import java.util.List;
-import java.util.Map;
 
 @Configurable(fileName = "lang")
 public class LangConf {
 
-    private EssenceMessage test = new EssenceMessage.Builder()
-            .withMessage("Welcome,!")
-            .withSound(Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f)
-                .withTitle("Welcome to the server!", "Enjoy your stay!", 10, 70, 20)
-                .build();
+    private EssenceMessage joinMessage = new EssenceMessage.Builder()
+            .withMessage("<red>Welcome to the <yellow>server!")
+            .withSound(new ConfigurableSound.Builder()
+                    .withSound(Sound.ENTITY_EXPERIENCE_ORB_PICKUP.name())
+                    .withVolume(1.0f)
+                    .withPitch(1.0f)
+                    .build())
+            .withTitle(new ConfigurableTitle.Builder()
+                    .withTitle("<red>Welcome!")
+                    .withSubtitle("To the server!")
+                    .withTimings(10, 70, 20)
+                    .build())
+            .build();
 
-    public EssenceMessage getTest() {
-        return test;
+    public EssenceMessage getJoinMessage() {
+        return joinMessage;
     }
 }
