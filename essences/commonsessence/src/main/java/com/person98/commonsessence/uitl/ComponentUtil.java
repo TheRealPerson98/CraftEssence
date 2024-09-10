@@ -6,16 +6,41 @@ import net.kyori.adventure.text.Component;
 
 public class ComponentUtil {
 
+    /**
+     * miniMessage is an instance of the MiniMessage class.
+     * It is used for deserializing and serializing text with the mini message format.
+     * It provides methods for translating mini message strings to legacy strings,
+     * as well as translating mini message strings to components.
+     *
+     * Example usage:
+     * String miniMessageString = "<red>Hello, <blue>world!</blue></red>";
+     * String legacyString = ComponentUtil.translateToLegacy(miniMessageString);
+     * Component component = ComponentUtil.translateToComponent(miniMessageString);
+     */
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
+    /**
+     *
+     */
     private static final LegacyComponentSerializer LEGACY_SERIALIZER = LegacyComponentSerializer.legacySection();
 
-    // Converts MiniMessage formatted string to a legacy-formatted string
+    /**
+     * Translates a MiniMessage string to legacy format.
+     *
+     * @param miniMessageString the MiniMessage string to be translated
+     * @return the translated legacy string
+     */
     public static String translateToLegacy(String miniMessageString) {
         Component component = MINI_MESSAGE.deserialize(miniMessageString);
         return LEGACY_SERIALIZER.serialize(component);
     }
 
-    // Converts MiniMessage formatted string to a Component (useful for other Adventure API uses)
+    /**
+     * Translates a MiniMessage formatted String into a Component.
+     *
+     * @param miniMessageString The MiniMessage formatted String to be translated.
+     *
+     * @return The Component representing the translated MiniMessage String.
+     */
     public static Component translateToComponent(String miniMessageString) {
         return MINI_MESSAGE.deserialize(miniMessageString);
     }
