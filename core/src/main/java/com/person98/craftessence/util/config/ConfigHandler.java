@@ -2,22 +2,38 @@ package com.person98.craftessence.util.config;
 
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.util.annotations.Configurable;
-import com.person98.craftessence.util.builder.IBuilder;
 import com.person98.craftessence.util.logging.EssenceLogger;
 import com.person98.craftessence.util.yaml.YamlParser;
 
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The ConfigHandler class is responsible for loading and saving configuration files based on annotations.
+ * It supports loading and saving YAML files using the YamlParser class.
+ */
 public class ConfigHandler {
 
+    /**
+     * The essenceName variable represents the name of an essence.
+     */
     private final String essenceName;
 
+    /**
+     * The ConfigHandler class is responsible for loading and saving configuration files based on annotations.
+     * It supports loading and saving YAML files using the YamlParser class.
+     */
     public ConfigHandler(String essenceName) {
         this.essenceName = essenceName;
     }
 
-    // Load configuration for a specific class
+    /**
+     * Loads a configuration object for a specific class if it is annotated with @Configurable.
+     *
+     * @param <T>   the type of the configuration class
+     * @param clazz the class of the configuration object
+     * @return the loaded configuration object
+     */
     public <T> T loadConfig(Class<T> clazz) {
         Configurable configurable = clazz.getAnnotation(Configurable.class);
         if (configurable != null) {
@@ -40,7 +56,12 @@ public class ConfigHandler {
         return null;
     }
 
-    // Save default configuration if the config file doesn't exist
+    /**
+     * Saves the default configuration for the given class.
+     *
+     * @param clazz the class that is annotated with {@link Configurable}
+     * @param <T>   the type of the class
+     */
     public <T> void saveDefaultConfig(Class<T> clazz) {
         Configurable configurable = clazz.getAnnotation(Configurable.class);
         if (configurable != null) {
@@ -57,7 +78,12 @@ public class ConfigHandler {
         }
     }
 
-    // Get the config file location for the essence
+    /**
+     * Retrieves the configuration file for the given file name.
+     *
+     * @param fileName the name of the configuration file (without file extension)
+     * @return the File object representing the configuration file
+     */
     private File getConfigFile(String fileName) {
         File essenceDataFolder = new File(CraftEssence.getInstance().getDataFolder(), "data/" + essenceName);
         if (!essenceDataFolder.exists()) {

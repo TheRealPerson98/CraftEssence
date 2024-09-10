@@ -7,7 +7,6 @@ import lombok.Getter;
 
 public class CraftEssence extends JavaPlugin {
 
-    // Instance of the plugin
     @Getter
     private static CraftEssence instance;
 
@@ -19,7 +18,7 @@ public class CraftEssence extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;  // Set instance when enabled
+        instance = this;
         printStartupBox();
         this.essenceLoader = new EssenceLoader();
         this.essenceLoader.loadEssencesInOrder();
@@ -30,7 +29,6 @@ public class CraftEssence extends JavaPlugin {
         getLogger().info("Core Plugin Disabled!");
     }
 
-    // Method to print the startup box using getLogger
     private void printStartupBox() {
         getLogger().info(ConsoleColors.YELLOW_BOLD + "###########################################" + ConsoleColors.RESET);
         getLogger().info(ConsoleColors.GREEN_BOLD + "#              " + ConsoleColors.BLUE_BOLD + "CraftEssence" + ConsoleColors.RESET + "              " + ConsoleColors.GREEN_BOLD + " #" + ConsoleColors.RESET);
