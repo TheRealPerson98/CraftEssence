@@ -1,32 +1,41 @@
 # CraftEssence
 
-**CraftEssence** is a module-based core plugin designed for Minecraft servers. The main goal of CraftEssence is to provide a lightweight framework that eliminates server bloat caused by plugins like CMI or Essentials, while offering a simple, flexible foundation for developers to create new or maintain existing plugins with ease.
+Welcome to **CraftEssence** - A module-based core plugin, specifically designed for Minecraft servers with a primary aim - *to eliminate server bloat and offer a simple, flexible foundation for developers*.
 
-## Features
+## **The Essence of CraftEssence**
 
-- **Modular Design**: CraftEssence is built around a core that allows for plugins (called *Essences*) to be added or removed without bloating the server with unnecessary features.
-- **Official Essences**: Officially supported add-ons are referred to as *Essences*, providing core functionalities that server owners can easily enable.
-- **Community & Custom Essences**: Public or third-party Essences can be named anything and extend the functionality of the core plugin with ease.
-- **Developer-Friendly Framework**: Aimed at both new and experienced developers, CraftEssence offers a simplified, streamlined API to create robust server plugins without dealing with performance or feature creep.
+The purpose of CraftEssence is to deliver a modern, efficient alternative to feature-heavy plugins. We are here to break the cycle of performance cost, complexity and limited customizations in return for providing solutions to each server need.
 
-## Why CraftEssence?
+What sets CraftEssence apart is its modularity, which enables server administrators to pick and choose features, thus reducing unnecessary resource consumption. The essence lies in getting what you need!
 
-The purpose of CraftEssence is to provide a modern, efficient alternative to feature-heavy plugins. While many all-in-one plugins attempt to provide solutions to every possible server need, they often come at the cost of performance, complexity, and customization. CraftEssence embraces modularity, allowing server administrators to pick and choose the exact features they need, reducing unnecessary resource consumption.
+## **Features**
 
-## Getting Started
+### Modular Design
+CraftEssence's heart is a core that allows for plugins (branded as *Essences*) to be added or removed avoiding redundant features bloating up the server.
 
-1. Download and install the **CraftEssence** core.
-2. Choose from a selection of *Essences* or create your own using the developer-friendly API.
-3. Add or remove Essences as needed to suit your server's requirements.
+### Official Essences
+We offer officially supported add-ons referred to as *Essences*. These provide core functionalities that server owners can enable without any fuss.
 
-## Creating an Essence
+### Community & Custom Essences
+Customize your server's functionality with public or third-party Essences. There are no restrictions on what they can be named.
 
-Developers can easily create and share their own Essences by following the guidelines in the provided API documentation. Whether you’re building a custom feature or enhancing existing server functionality, the framework ensures clean integration without server clutter.
+### Developer-Friendly Framework
+CraftEssence, the go-to choice for both rookies and experienced developers, offers a simplified, streamlined API to create sturdy server plugins without performance or feature creep.
 
-## Contributing
+## **Getting Started with CraftEssence**
 
-Contributions to the project are welcome! Feel free to submit pull requests for improvements, optimizations, or new Essences. The goal of CraftEssence is to build a lightweight yet highly customizable ecosystem for Minecraft servers.
+1. **Initial Setup**: Download and install the CraftEssence core.
+2. **Choose Your Essence**: Browse and select from among a range of provided *Essences* or create your own using the intuitive API.
+3. **Tailor At Will**: Add or remove Essences as per your server's needs.
 
-## License
+## **Creating an Essence**
 
-See `LICENSE` for more information.
+Developers' playground! Follow the guidelines detailed in the API documentation and create plus share your own essences with ease.
+
+## **Contributing to CraftEssence**
+
+CraftEssence appreciates contributions! Feel free to submit pull requests for improvements, optimizations, or even a new essence. We aim to develop a lightweight yet highly customizable community for Minecraft servers.
+
+## **License**
+
+For further information, please refer to the `LICENSE`.
