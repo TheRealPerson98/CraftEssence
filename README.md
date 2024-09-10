@@ -1,4 +1,5 @@
-# CraftEssence
+
+![Asset 1](https://github.com/user-attachments/assets/b9e4e582-cce9-491c-9c87-97db0ac8c87d)
 
 Welcome to **CraftEssence** - A module-based core plugin, specifically designed for Minecraft servers with a primary aim - *to eliminate server bloat and offer a simple, flexible foundation for developers*.
 
