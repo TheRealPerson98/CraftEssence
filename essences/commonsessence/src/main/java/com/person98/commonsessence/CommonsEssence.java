@@ -38,6 +38,13 @@ public class CommonsEssence implements Essence {
 
         new UserListener(this);
 
+        Events.hook(PlayerJoinEvent.class, event -> {
+            EssenceLogger.Info("User " + event.getPlayer().getName() + " has joined the server!");
+            final User user = UserManager.getUser(event.getPlayer().getUniqueId());
+
+            user.show(new CoolMenu(this.getConfig(LangConf.class).getBuyMenu(), user));
+        }).bindTo(this);
+;
     }
 
     @Override

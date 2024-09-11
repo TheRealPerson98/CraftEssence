@@ -96,7 +96,7 @@ public class Events {
                             }
                         },
                         Bukkit.getPluginManager().getPlugin("CraftEssence"),  // Your plugin's instance
-                        false // Ignore cancelled events by default
+                        false
                 );
 
                 // Store the event registration in EventHolder for management

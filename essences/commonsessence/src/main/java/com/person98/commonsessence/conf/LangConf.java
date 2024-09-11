@@ -20,7 +20,7 @@ public class LangConf {
             .menuDesign("XXXXXXXXX",
                     "XOOOOOOOX",
                     "XOOOOOOOX",
-                    "XXXVXCXXX"
+                    "XXXXCXXXX"
             )
             .item(new EssenceMenuElement.Builder()
                     .name("border")
@@ -29,91 +29,15 @@ public class LangConf {
                     .build())
 
             .item(new EssenceMenuElement.Builder()
-                    .name("tasks")
-                    .item("notcompleted", ItemBuilder.of(Material.PAPER).name("<blue>{task_name}").build())
-                    .item("completed", ItemBuilder.of(Material.PAPER).name("<blue>{task_name} <gray>(<green>{completed_date}<gray>)").build())
                     .defaultItem(ItemBuilder.of(Material.PAPER).name("<blue>{task_name}").build())
                     .build())
 
             .item(new EssenceMenuElement.Builder()
                     .name("return_close")
                     .key('C')
-                    .item("close", ItemBuilder.of(Material.BARRIER).name("Close").build())
+                    .defaultItem(ItemBuilder.of(Material.BARRIER).name("<red>Close").build())
                     .build())
 
-            .item(new EssenceMenuElement.Builder()
-                    .name("add_1")
-                    .key('U')
-                    .defaultItem(ItemBuilder.of(Material.GREEN_STAINED_GLASS_PANE)
-                            .name("Add one")
-                            .build())
-                    .build())
-
-            .item(new EssenceMenuElement.Builder()
-                    .name("add_16")
-                    .key('I')
-                    .defaultItem(ItemBuilder.of(Material.GREEN_STAINED_GLASS_PANE)
-                            .name("Add ten")
-                            .build())
-                    .build())
-
-            .item(new EssenceMenuElement.Builder()
-                    .name("add_64")
-                    .key('H')
-                    .defaultItem(ItemBuilder.of(Material.GREEN_STAINED_GLASS_PANE)
-                            .name("Add a stack")
-                            .build())
-                    .build())
-
-            .item(new EssenceMenuElement.Builder()
-                    .name("remove_1")
-                    .key('B')
-                    .defaultItem(ItemBuilder.of(Material.RED_STAINED_GLASS_PANE)
-                            .name("Remove one")
-                            .build())
-                    .build())
-
-            .item(new EssenceMenuElement.Builder()
-                    .name("remove_16")
-                    .key('N')
-                    .defaultItem(ItemBuilder.of(Material.RED_STAINED_GLASS_PANE)
-                            .name("Remove ten")
-                            .build())
-                    .build())
-
-            .item(new EssenceMenuElement.Builder()
-                    .name("remove_64")
-                    .key('M')
-                    .defaultItem(ItemBuilder.of(Material.RED_STAINED_GLASS_PANE)
-                            .name("Remove a stack")
-                            .build())
-                    .build())
-            .item(new EssenceMenuElement.Builder()
-                    .name("confirm")
-                    .key('V')
-                    .item("buying", ItemBuilder.of(Material.PAPER)
-                            .name("Buy Price")
-                            .lore(List.of(
-                                    "Cost: {buy_cost}",
-                                    "Amount: {amount}",
-                                    "Currency: {currency}"
-                            ))
-                            .build())
-                    .item("selling", ItemBuilder.of(Material.PAPER)
-                            .name("Sell Price")
-                            .lore(List.of(
-                                    "Cost: {sell_cost}",
-                                    "Amount: {amount}",
-                                    "Currency: {currency}"
-                            ))
-                            .build())
-                    .build())
-            .item(new EssenceMenuElement.Builder()
-                    .name("price_type")
-                    .key('R')
-                    .item("buy_price", ItemBuilder.of(Material.PAPER).name("Buy Price").build())
-                    .item("sell_price", ItemBuilder.of(Material.PAPER).name("Sell Price").build())
-                    .build())
             .updateTicks(-1)
             .build();
 

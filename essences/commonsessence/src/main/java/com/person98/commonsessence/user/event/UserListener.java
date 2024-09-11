@@ -26,8 +26,6 @@ public class UserListener {
             EssenceLogger.Info("User " + event.getPlayer().getName() + " has joined the server!");
             UserManager.markUserOnline(event.getPlayer().getUniqueId());
             Events.call(new UserJoinEvent(UserManager.getUser(event.getPlayer().getUniqueId())));
-            UserManager.getUser(event.getPlayer().getUniqueId()).show(new CoolMenu(this.essence.getConfig(LangConf.class).getBuyMenu(), UserManager.getUser(event.getPlayer().getUniqueId())));
-
         }).bindTo(essence);
 
         // Hook into PlayerQuitEvent to mark the player as offline

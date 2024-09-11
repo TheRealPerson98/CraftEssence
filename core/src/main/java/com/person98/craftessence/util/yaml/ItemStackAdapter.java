@@ -1,5 +1,6 @@
 package com.person98.craftessence.util.yaml;
 
+import com.person98.craftessence.util.ComponentUtil;
 import com.person98.craftessence.util.item.ItemBuilder;
 import com.person98.craftessence.util.item.ItemHelper;
 import com.person98.craftessence.util.item.ConfigurableNBT;
@@ -43,14 +44,18 @@ public class ItemStackAdapter implements JsonDeserializer<ItemStack>, JsonSerial
 
             ItemBuilder builder = ItemBuilder.of(material).amount(amount);
 
-            // Deserialize display name
+            // Deserialize and translate display name
             if (obj.has(DISPLAY_NAME)) {
-                builder.name(obj.get(DISPLAY_NAME).getAsString());
+                String miniMessageName = obj.get(DISPLAY_NAME).getAsString();
+                builder.name(ComponentUtil.translateToLegacy(miniMessageName));
             }
 
-            // Deserialize lore
+            // Deserialize and translate lore
             if (obj.has(LORE)) {
                 List<String> loreList = Json.getGson().fromJson(obj.get(LORE), List.class);
+                for (int i = 0; i < loreList.size(); i++) {
+                    loreList.set(i, ComponentUtil.translateToLegacy(loreList.get(i)));
+                }
                 builder.lore(loreList);
             }
 
@@ -59,14 +64,14 @@ public class ItemStackAdapter implements JsonDeserializer<ItemStack>, JsonSerial
                 builder.customModelData(obj.get(CUSTOM_MODEL_DATA).getAsInt());
             }
 
-            // Deserialize item flags (Fix)
+            // Deserialize item flags
             if (obj.has(ITEM_FLAGS)) {
                 List<String> flags = Json.getGson().fromJson(obj.get(ITEM_FLAGS), List.class);
                 Map<String, Boolean> itemFlagsMap = new HashMap<>();
                 for (String flag : flags) {
-                    itemFlagsMap.put(flag, true);  // Assuming we treat all flags as "enabled"
+                    itemFlagsMap.put(flag, true); // Assuming we treat all flags as "enabled"
                 }
-                builder.itemFlags(itemFlagsMap);  // Pass the map to the builder
+                builder.itemFlags(itemFlagsMap); // Pass the map to the builder
             }
 
             // Deserialize unbreakable
@@ -119,8 +124,6 @@ public class ItemStackAdapter implements JsonDeserializer<ItemStack>, JsonSerial
         }
     }
 
-
-
     @Override
     public JsonElement serialize(ItemStack itemStack, Type type, JsonSerializationContext context) {
         JsonObject obj = new JsonObject();
@@ -131,10 +134,12 @@ public class ItemStackAdapter implements JsonDeserializer<ItemStack>, JsonSerial
             if (itemStack.hasItemMeta()) {
                 ItemMeta meta = itemStack.getItemMeta();
                 if (meta.hasDisplayName()) {
+                    // Serialize the display name and translate it to MiniMessage
                     obj.addProperty(DISPLAY_NAME, ItemHelper.get().getSerializableDisplayName(itemStack));
                 }
 
                 if (meta.hasLore()) {
+                    // Serialize the lore and translate it to MiniMessage
                     List<String> lore = ItemHelper.get().getSerializableLore(itemStack);
                     obj.add(LORE, new Gson().toJsonTree(lore));
                 }

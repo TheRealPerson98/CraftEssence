@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -36,11 +37,28 @@ public abstract class Menu<T> implements InventoryHolder, IDisplayable {
             for (int j = 0; j < row.length(); j++) {
                 char key = row.charAt(j);
 
-                if (key == 'O' && objectIndex < objects.size()) {
-                    // Place object in menu
-                    ItemStack item = convertObjectToItemStack(objects.get(objectIndex));
-                    inventory.setItem(i * 9 + j, item);
-                    objectIndex++;
+                if (key == 'O') {
+                    if (objectIndex < objects.size()) {
+                        // Get the default item from the menu
+                        EssenceMenuElement element = findElementByKey('O');
+                        if (element != null) {
+                            // Copy the default item meta (name and lore)
+                            ItemStack defaultItem = element.getDefaultItem();
+                            ItemStack objectItem = convertObjectToItemStack(objects.get(objectIndex));
+                            ItemMeta meta = defaultItem.getItemMeta();
+
+                            if (meta != null) {
+                                // Replace the type of the default item with the new object's type
+                                objectItem.setItemMeta(meta); // Keep name and lore
+                            }
+
+                            inventory.setItem(i * 9 + j, objectItem); // Place in inventory
+                        }
+                        objectIndex++;
+                    } else {
+                        // When there are no more objects, leave the slot empty or fill with a placeholder (optional)
+                        inventory.setItem(i * 9 + j, null); // You can use a placeholder ItemStack if needed
+                    }
                 } else {
                     EssenceMenuElement element = findElementByKey(key);
                     if (element != null) {
