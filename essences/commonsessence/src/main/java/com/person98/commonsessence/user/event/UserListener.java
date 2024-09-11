@@ -1,6 +1,8 @@
 package com.person98.commonsessence.user.event;
 
 import com.person98.commonsessence.CommonsEssence;
+import com.person98.commonsessence.conf.CoolMenu;
+import com.person98.commonsessence.conf.LangConf;
 import com.person98.commonsessence.event.Events;
 import com.person98.commonsessence.user.UserManager;
 import com.person98.commonsessence.user.event.events.UserJoinEvent;
@@ -21,8 +23,11 @@ public class UserListener {
 
     private void userEvents() {
         Events.hook(PlayerJoinEvent.class, event -> {
+            EssenceLogger.Info("User " + event.getPlayer().getName() + " has joined the server!");
             UserManager.markUserOnline(event.getPlayer().getUniqueId());
             Events.call(new UserJoinEvent(UserManager.getUser(event.getPlayer().getUniqueId())));
+            UserManager.getUser(event.getPlayer().getUniqueId()).show(new CoolMenu(this.essence.getConfig(LangConf.class).getBuyMenu(), UserManager.getUser(event.getPlayer().getUniqueId())));
+
         }).bindTo(essence);
 
         // Hook into PlayerQuitEvent to mark the player as offline

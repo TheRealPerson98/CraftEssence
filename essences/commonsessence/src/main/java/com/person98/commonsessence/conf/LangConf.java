@@ -18,14 +18,21 @@ public class LangConf {
             .menuTitle("Buy Menu")
             .name("Buy Menu")
             .menuDesign("XXXXXXXXX",
-                    "XBNMOIHUX",
-                    "XXXRXAXXX",
+                    "XOOOOOOOX",
+                    "XOOOOOOOX",
                     "XXXVXCXXX"
             )
             .item(new EssenceMenuElement.Builder()
                     .name("border")
                     .key('X')
                     .defaultItem(ItemBuilder.of(Material.GRAY_STAINED_GLASS_PANE).name(" ").build())
+                    .build())
+
+            .item(new EssenceMenuElement.Builder()
+                    .name("tasks")
+                    .item("notcompleted", ItemBuilder.of(Material.PAPER).name("<blue>{task_name}").build())
+                    .item("completed", ItemBuilder.of(Material.PAPER).name("<blue>{task_name} <gray>(<green>{completed_date}<gray>)").build())
+                    .defaultItem(ItemBuilder.of(Material.PAPER).name("<blue>{task_name}").build())
                     .build())
 
             .item(new EssenceMenuElement.Builder()
@@ -82,11 +89,6 @@ public class LangConf {
                             .build())
                     .build())
             .item(new EssenceMenuElement.Builder()
-                    .name("shop_item")
-                    .defaultItem(ItemBuilder.of(Material.PAPER)
-                            .build())
-                    .build())
-            .item(new EssenceMenuElement.Builder()
                     .name("confirm")
                     .key('V')
                     .item("buying", ItemBuilder.of(Material.PAPER)
@@ -114,6 +116,10 @@ public class LangConf {
                     .build())
             .updateTicks(-1)
             .build();
+
+    public ConfigurableMenu getBuyMenu() {
+        return this.buyMenu;
+    }
 
 }
 //        private EssenceMessage joinMessage = new EssenceMessage.Builder()
