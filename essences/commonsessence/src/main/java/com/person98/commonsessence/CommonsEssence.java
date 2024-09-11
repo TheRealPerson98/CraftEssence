@@ -33,10 +33,6 @@ public class CommonsEssence implements Essence {
     public void onEnable() {
         EssenceSchedulers.initialize(CraftEssence.getInstance(), 4);
         new UserListener(this);
-
-        Events.hook(PlayerJoinEvent.class, event -> {
-            UserManager.getUser(event.getPlayer().getUniqueId()).show(this.getConfig(LangConf.class).getJoinMessage());
-        }).bindTo(this);
     }
 
     @Override

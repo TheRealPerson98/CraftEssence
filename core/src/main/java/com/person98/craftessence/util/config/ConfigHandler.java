@@ -1,5 +1,6 @@
 package com.person98.craftessence.util.config;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.util.annotations.Configurable;
 import com.person98.craftessence.util.logging.EssenceLogger;
@@ -50,11 +51,13 @@ public class ConfigHandler {
                 EssenceLogger.Info("Loaded " + fileName + ".yml for " + essenceName);
                 return configInstance;
             } catch (IOException e) {
+                EssenceLogger.Error("Failed to load YAML file: " + configFile.getPath());
                 e.printStackTrace();
             }
         }
         return null;
     }
+
 
     /**
      * Saves the default configuration for the given class.

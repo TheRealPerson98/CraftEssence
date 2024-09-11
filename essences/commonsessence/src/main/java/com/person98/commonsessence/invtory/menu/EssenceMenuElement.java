@@ -65,14 +65,4 @@ public class EssenceMenuElement {
             return new EssenceMenuElement(this);
         }
     }
-
-    @Override
-    public String toString() {
-        return "EssenceMenuElement{" +
-                "name='" + name + '\'' +
-                ", key=" + key +
-                ", items=" + items +
-                ", defaultItem=" + defaultItem +
-                '}';
-    }
 }

@@ -1,8 +1,8 @@
 package com.person98.commonsessence.user.display.title;
 
-import com.person98.commonsessence.util.ComponentUtil;
 import com.person98.commonsessence.user.User;
 import com.person98.commonsessence.user.display.IDisplayable;
+import com.person98.craftessence.util.ComponentUtil;
 import com.person98.craftessence.util.builder.IBuilder;
 import org.bukkit.entity.Player;
 

@@ -81,14 +81,4 @@ public class ConfigurableMenu {
         }
     }
 
-    @Override
-    public String toString() {
-        return "ConfigurableMenu{" +
-                "menuTitle='" + menuTitle + '\'' +
-                ", name='" + name + '\'' +
-                ", menuDesign=" + menuDesign +
-                ", elements=" + elements +
-                ", updateTicks=" + updateTicks +
-                '}';
-    }
 }

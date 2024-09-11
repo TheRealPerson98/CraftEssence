@@ -1,11 +1,11 @@
 package com.person98.commonsessence.user.display.messages;
 
-import com.person98.commonsessence.util.ComponentUtil;
 import com.person98.commonsessence.user.User;
 import com.person98.commonsessence.user.display.IDisplayable;
 import com.person98.commonsessence.user.display.sound.ConfigurableSound;
 import com.person98.commonsessence.user.display.title.ConfigurableTitle;
 import com.person98.commonsessence.user.display.firework.ConfigurableFirework;
+import com.person98.craftessence.util.ComponentUtil;
 import com.person98.craftessence.util.builder.IBuilder;
 import org.bukkit.entity.Player;
 

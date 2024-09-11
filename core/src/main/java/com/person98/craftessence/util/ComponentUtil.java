@@ -1,8 +1,9 @@
-package com.person98.commonsessence.util;
+package com.person98.craftessence.util;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.Component;
+import org.jetbrains.annotations.NotNull;
 
 public class ComponentUtil {
 
@@ -43,5 +44,9 @@ public class ComponentUtil {
      */
     public static Component translateToComponent(String miniMessageString) {
         return MINI_MESSAGE.deserialize(miniMessageString);
+    }
+
+    public static @NotNull String readFromMiniMessage(@NotNull Component component) {
+        return MiniMessage.miniMessage().serialize(component);
     }
 }
