@@ -87,11 +87,11 @@ public class LoadOrder {
     /**
      * Performs a depth-first search (DFS) on a dependency graph to determine the load order of essences.
      *
-     * @param current           the current essence being visited
-     * @param dependencyGraph   a map representing the dependency graph, where each key is an essence and the corresponding value is a list of its dependencies
-     * @param visited           a set of visited essences
-     * @param visiting          a set of essences currently being visited
-     * @param sortedOrder       the list to store the sorted load order of essences
+     * @param current         the current essence being visited
+     * @param dependencyGraph a map representing the dependency graph, where each key is an essence and the corresponding value is a list of its dependencies
+     * @param visited         a set of visited essences
+     * @param visiting        a set of essences currently being visited
+     * @param sortedOrder     the list to store the sorted load order of essences
      * @return true if a circular dependency is detected, false otherwise
      */
     private boolean dfs(String current, Map<String, List<String>> dependencyGraph, Set<String> visited, Set<String> visiting, List<String> sortedOrder) {
@@ -136,10 +136,10 @@ public class LoadOrder {
     /**
      * Detects cycles in a dependency graph starting from a given node.
      *
-     * @param current           the current node to start the detection from
-     * @param dependencyGraph   the dependency graph represented as a map of nodes and their dependencies
-     * @param visited           a set of visited nodes
-     * @param visiting          a set of nodes currently being visited
+     * @param current         the current node to start the detection from
+     * @param dependencyGraph the dependency graph represented as a map of nodes and their dependencies
+     * @param visited         a set of visited nodes
+     * @param visiting        a set of nodes currently being visited
      * @return true if a cycle is detected, false otherwise
      */
     private boolean detectCycle(String current, Map<String, List<String>> dependencyGraph, Set<String> visited, Set<String> visiting) {

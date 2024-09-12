@@ -3,6 +3,7 @@ package com.person98.craftessence.util.item;
 import com.google.common.collect.Lists;
 import com.person98.craftessence.util.ComponentUtil;
 import de.tr7zw.nbtapi.NBTItem;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -10,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import net.kyori.adventure.text.Component;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -22,7 +22,8 @@ public class ItemHelper {
 
     private static final ItemHelper instance = new ItemHelper();
 
-    private ItemHelper() {}
+    private ItemHelper() {
+    }
 
     public static ItemHelper get() {
         return instance;
@@ -150,6 +151,7 @@ public class ItemHelper {
         }
         return nbtList;
     }
+
     /**
      * Get the enchantments of the item for serialization.
      *

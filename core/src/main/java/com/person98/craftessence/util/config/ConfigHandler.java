@@ -1,6 +1,5 @@
 package com.person98.craftessence.util.config;
 
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.person98.craftessence.CraftEssence;
 import com.person98.craftessence.util.annotations.Configurable;
 import com.person98.craftessence.util.logging.EssenceLogger;

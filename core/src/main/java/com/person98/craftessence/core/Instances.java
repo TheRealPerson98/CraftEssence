@@ -13,6 +13,7 @@ public class Instances {
 
     /**
      * Map to store the class type and its instance
+     *
      * @since 1.0.0
      */
     // Map to store the class type and its instance
@@ -23,8 +24,8 @@ public class Instances {
      *
      * @param clazz    The class type to be registered.
      * @param instance The instance of the class type to be bound.
-     * @throws IllegalArgumentException      If either the clazz or instance is null.
-     * @throws IllegalStateException         If an instance for the class is already registered.
+     * @throws IllegalArgumentException If either the clazz or instance is null.
+     * @throws IllegalStateException    If an instance for the class is already registered.
      */
     // Register a class type and bind it to its instance
     public static <T extends Essence> void register(Class<T> clazz, T instance) {
@@ -65,7 +66,7 @@ public class Instances {
     /**
      * Check if a class has been registered.
      *
-     * @param <T> the type parameter for the class that extends Essence
+     * @param <T>   the type parameter for the class that extends Essence
      * @param clazz the class to check if it has been registered
      * @return true if the class has been registered, false otherwise
      */

@@ -1,9 +1,9 @@
 package com.person98.commonsessence.user.event.events;
 
 import com.person98.commonsessence.user.User;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.entity.Player;
 
 public class UserLeaveEvent extends Event {
 
@@ -12,6 +12,10 @@ public class UserLeaveEvent extends Event {
 
     public UserLeaveEvent(User user) {
         this.user = user;
+    }
+
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
     }
 
     public User getUser() {
@@ -24,10 +28,6 @@ public class UserLeaveEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return HANDLERS;
-    }
-
-    public static HandlerList getHandlerList() {
         return HANDLERS;
     }
 }

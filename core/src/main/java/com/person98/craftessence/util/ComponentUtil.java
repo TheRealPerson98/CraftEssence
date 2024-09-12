@@ -1,8 +1,8 @@
 package com.person98.craftessence.util;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 
 public class ComponentUtil {
@@ -12,7 +12,7 @@ public class ComponentUtil {
      * It is used for deserializing and serializing text with the mini message format.
      * It provides methods for translating mini message strings to legacy strings,
      * as well as translating mini message strings to components.
-     *
+     * <p>
      * Example usage:
      * String miniMessageString = "<red>Hello, <blue>world!</blue></red>";
      * String legacyString = ComponentUtil.translateToLegacy(miniMessageString);
@@ -39,7 +39,6 @@ public class ComponentUtil {
      * Translates a MiniMessage formatted String into a Component.
      *
      * @param miniMessageString The MiniMessage formatted String to be translated.
-     *
      * @return The Component representing the translated MiniMessage String.
      */
     public static Component translateToComponent(String miniMessageString) {

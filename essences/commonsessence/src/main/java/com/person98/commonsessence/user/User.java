@@ -3,6 +3,7 @@ package com.person98.commonsessence.user;
 import com.person98.commonsessence.user.display.IDisplayable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
 import java.util.UUID;
 
 /**
@@ -36,15 +37,15 @@ public class User {
     private final UUID uuid;
     /**
      * Represents the online status of a user.
-     *
+     * <p>
      * The value of this variable indicates whether the user is currently online or not.
-     *
+     * <p>
      * When the user goes online, the value of this variable is set to `true`.
      * When the user goes offline, the value of this variable is set to `false`.
-     *
+     * <p>
      * This variable is used in the `User` class to track the online status of a user.
      * It is updated by the `setOnline()` and `setOffline()` methods of the `User` class.
-     *
+     * <p>
      * The value of this variable can be retrieved using the `isOnline()` method of the `User` class.
      *
      * @see User
@@ -67,13 +68,13 @@ public class User {
 
     /**
      * Sets the player's online status to true and gets the corresponding Player object.
-     *
+     * <p>
      * This method sets the player's online status to true by updating the 'isOnline' field.
      * Additionally, it retrieves the Player object associated with the player's UUID using
      * the Bukkit.getPlayer(UUID uuid) method and assigns it to the 'player' field.
-     *
+     * <p>
      * Note: The 'uuid' field must be set before calling this method. Otherwise, the 'player' field
-     *       will remain null.
+     * will remain null.
      */
     public void setOnline() {
         this.isOnline = true;
@@ -98,6 +99,7 @@ public class User {
     }
 
     /**
+     *
      */
     public void show(IDisplayable displayable) {
         if (this.isOnline && this.player != null) {

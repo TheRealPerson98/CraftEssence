@@ -34,9 +34,9 @@ public class Events {
     /**
      * Hook into an event class with a custom event handler.
      *
-     * @param <T>         The type of event to hook into.
-     * @param eventClass  The class of the event to hook into.
-     * @param handler     The event handler to be called when the event occurs.
+     * @param <T>        The type of event to hook into.
+     * @param eventClass The class of the event to hook into.
+     * @param handler    The event handler to be called when the event occurs.
      * @return An instance of EventListenerWrapper, which allows for further customization and binding to an Essence object.
      */
     public static <T extends Event> EventListenerWrapper<T> hook(Class<T> eventClass, Consumer<T> handler) {
@@ -46,10 +46,10 @@ public class Events {
     /**
      * Creates an event listener wrapper and associates it with the provided event class, priority, and event handler.
      *
-     * @param <T>         The type of event.
-     * @param eventClass  The class of the event.
-     * @param priority    The priority of the event listener.
-     * @param handler     The event handler.
+     * @param <T>        The type of event.
+     * @param eventClass The class of the event.
+     * @param priority   The priority of the event listener.
+     * @param handler    The event handler.
      * @return The created EventListenerWrapper object.
      */
     public static <T extends Event> EventListenerWrapper<T> hookPriorityToEvent(Class<T> eventClass, EventPriority priority, Consumer<T> handler) {
@@ -85,7 +85,8 @@ public class Events {
             if (essence != null) {
                 Bukkit.getPluginManager().registerEvent(
                         eventClass,
-                        new Listener() {},  // Empty listener as we use EventExecutor
+                        new Listener() {
+                        },  // Empty listener as we use EventExecutor
                         priority,
                         new EventExecutor() {
                             @Override

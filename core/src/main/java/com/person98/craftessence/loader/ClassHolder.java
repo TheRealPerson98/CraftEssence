@@ -11,7 +11,7 @@ public class ClassHolder {
     /**
      * A private final field that holds a mapping of class names to their corresponding Class objects.
      * This map is an instance of the HashMap class.
-     *
+     * <p>
      * The key in the map is a String representing the class name, and the value is a Class object representing the corresponding class.
      */
     private final Map<String, Class<?>> classMap = new HashMap<>();
@@ -20,7 +20,7 @@ public class ClassHolder {
      * Adds a mapping of a class name to its corresponding Class object.
      *
      * @param className The name of the class.
-     * @param clazz The Class object representing the class.
+     * @param clazz     The Class object representing the class.
      */
     public void addClass(String className, Class<?> clazz) {
         classMap.put(className, clazz);

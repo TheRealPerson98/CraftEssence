@@ -1,8 +1,6 @@
 package com.person98.commonsessence.user.event;
 
 import com.person98.commonsessence.CommonsEssence;
-import com.person98.commonsessence.conf.CoolMenu;
-import com.person98.commonsessence.conf.LangConf;
 import com.person98.commonsessence.event.Events;
 import com.person98.commonsessence.user.UserManager;
 import com.person98.commonsessence.user.event.events.UserJoinEvent;
@@ -13,11 +11,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class UserListener {
     private final CommonsEssence essence;
-    
-    
+
+
     public UserListener(CommonsEssence essence) {
         this.essence = essence;
-        
+
         this.userEvents();
     }
 

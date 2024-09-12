@@ -14,66 +14,66 @@ public class UserManager {
     /**
      * The `users` variable is a private static final Map that stores user data.
      * It is a mapping between UUID (unique identifier) and User objects.
-     *
+     * <p>
      * The keys (UUIDs) are used to uniquely identify each user in the map.
      * The values (User objects) represent individual users.
-     *
+     * <p>
      * User objects are created instances of the `User` class, which represents a user in the system.
      * Each `User` object contains a UUID, a flag indicating if the user is online or offline,
      * and a reference to the corresponding `Player` object (if the user is online).
-     *
+     * <p>
      * The `users` map is initialized as an empty HashMap in the `UserManager` class.
      * It is used to store and manage all user data and state in the system.
-     *
+     * <p>
      * The `getUser` method in the `UserManager` class is used to retrieve a `User` object from the `users` map using a given UUID.
      * If the `User` object does not exist in the map, it will be created using the User constructor and added to the map.
-     *
+     * <p>
      * The `markUserOnline` method in the `UserManager` class is used to mark a user as online.
      * It retrieves the corresponding `User` object from the `users` map using the given UUID and calls the `setOnline` method on it.
      * The `setOnline` method sets the `isOnline` flag to `true` and gets the corresponding `Player` object from Bukkit using the UUID.
-     *
+     * <p>
      * The `markUserOffline` method in the `UserManager` class is used to mark a user as offline.
      * It retrieves the corresponding `User` object from the `users` map using the given UUID and calls the `setOffline` method on it.
      * The `setOffline` method sets the `isOnline` flag to `false` and clears the cached `Player` object.
-     *
+     * <p>
      * The `hasUser` method in the `UserManager` class is used to check if a user with the given UUID exists in the `users` map.
      * It returns `true` if the user exists, and `false` otherwise.
-     *
+     * <p>
      * The `getAllUsers` method in the `UserManager` class is used to retrieve a list of all `User` objects in the `users` map.
      * It returns an unmodifiable copy of the values in the `users` map.
-     *
+     * <p>
      * The `User` class contains methods to interact with individual users.
      * The `show` method is used to send a message to the user if they are online.
      * It takes an object that implements the `IDisplayable` interface as a parameter.
      * The `display` method of the `IDisplayable` object is called with the `User` object as an argument.
-     *
+     * <p>
      * The `getPlayer` method in the `User` class is used to obtain the corresponding `Player` object if the user is online.
      * If the `Player` object is `null` or not online, it retrieves the `Player` object from Bukkit using the UUID.
-     *
+     * <p>
      * The `IDisplayable` interface represents an object that can be displayed to a user.
      * It contains a single method `display` that takes a `User` object as a parameter.
-     *
+     * <p>
      * Example usage:
-     *
+     * <p>
      * // Get a user by UUID
      * UUID uuid = UUID.randomUUID();
      * User user = UserManager.getUser(uuid);
-     *
+     * <p>
      * // Mark a user as online
      * UserManager.markUserOnline(uuid);
-     *
+     * <p>
      * // Mark a user as offline
      * UserManager.markUserOffline(uuid);
-     *
+     * <p>
      * // Check if a user exists
      * boolean exists = UserManager.hasUser(uuid);
-     *
+     * <p>
      * // Get all users
      * List<User> allUsers = UserManager.getAllUsers();
-     *
+     * <p>
      * // Display a message to a user
      * user.show(new MyDisplayable());
-     *
+     * <p>
      * // Get the Player object of a user
      * Player player = user.getPlayer();
      */

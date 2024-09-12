@@ -4,15 +4,14 @@ import com.person98.commonsessence.scheduler.EssenceSchedulers;
 import com.person98.commonsessence.user.User;
 import com.person98.commonsessence.user.display.IDisplayable;
 import com.person98.craftessence.util.builder.IBuilder;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;

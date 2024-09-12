@@ -1,6 +1,5 @@
 package com.person98.commonsessence.invtory.menu;
 
-import com.person98.commonsessence.invtory.menu.EssenceMenuElement;
 import com.person98.craftessence.util.builder.IBuilder;
 
 import java.util.ArrayList;

@@ -35,23 +35,32 @@
 
 ## 🌟 **The Essence of CraftEssence**
 
-CraftEssence is designed to provide a modern and efficient alternative to heavy, bloated server plugins. The goal is simple: provide solutions for every server’s needs without sacrificing performance or customization.
+CraftEssence is designed to provide a modern and efficient alternative to heavy, bloated server plugins. The goal is
+simple: provide solutions for every server’s needs without sacrificing performance or customization.
 
-CraftEssence is modular, enabling server administrators to pick and choose features, reducing unnecessary resource consumption. The true **essence** lies in giving you what you need!
+CraftEssence is modular, enabling server administrators to pick and choose features, reducing unnecessary resource
+consumption. The true **essence** lies in giving you what you need!
 
 ## 🚀 **Features**
 
 ### Modular Design
-CraftEssence's core allows for plugins (called *Essences*) to be added or removed, preventing your server from being overloaded with unused features.
+
+CraftEssence's core allows for plugins (called *Essences*) to be added or removed, preventing your server from being
+overloaded with unused features.
 
 ### Official Essences
-We offer a collection of officially supported *Essences* that provide essential functionalities to enhance your server's performance.
+
+We offer a collection of officially supported *Essences* that provide essential functionalities to enhance your server's
+performance.
 
 ### Community & Custom Essences
+
 Customize your server even further with public or third-party *Essences*—no limitations on what they can be named.
 
 ### Developer-Friendly Framework
-CraftEssence is ideal for both beginner and experienced developers. Its streamlined API simplifies plugin creation while ensuring excellent performance and no feature creep.
+
+CraftEssence is ideal for both beginner and experienced developers. Its streamlined API simplifies plugin creation while
+ensuring excellent performance and no feature creep.
 
 ## 🎮 **Getting Started with CraftEssence**
 
@@ -61,11 +70,13 @@ CraftEssence is ideal for both beginner and experienced developers. Its streamli
 
 ## 💻 **Creating an Essence**
 
-Are you a developer? Dive into our API documentation and create your own *Essences* with ease. Share your creations with the community to help others customize their servers.
+Are you a developer? Dive into our API documentation and create your own *Essences* with ease. Share your creations with
+the community to help others customize their servers.
 
 ## 🤝 **Contributing to CraftEssence**
 
-We welcome contributions! Submit pull requests to improve the plugin, add new *Essences*, or optimize the existing ones. Help us create a lightweight yet highly customizable Minecraft server community.
+We welcome contributions! Submit pull requests to improve the plugin, add new *Essences*, or optimize the existing ones.
+Help us create a lightweight yet highly customizable Minecraft server community.
 
 ## 📜 **License**
 

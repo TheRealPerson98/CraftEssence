@@ -5,13 +5,13 @@ import com.person98.craftessence.CraftEssence;
 /**
  * The EssenceLogger class provides static methods for logging messages with different log levels.
  * It uses ANSI escape codes to change the color and style of console output.
- *
+ * <p>
  * Usage example:
- *
- *     EssenceLogger.Debug("Debug message");
- *     EssenceLogger.Warning("Warning message");
- *     EssenceLogger.Error("Error message");
- *     EssenceLogger.Info("Info message");
+ * <p>
+ * EssenceLogger.Debug("Debug message");
+ * EssenceLogger.Warning("Warning message");
+ * EssenceLogger.Error("Error message");
+ * EssenceLogger.Info("Info message");
  */
 public class EssenceLogger {
 
@@ -26,25 +26,25 @@ public class EssenceLogger {
     /**
      * The RESET_COLOR variable is used to reset the color and style of console output.
      * It uses the ANSI escape code provided by the ConsoleColors.RESET constant.
-     *
+     * <p>
      * Example usage:
-     *
-     *     System.out.println(ConsoleColors.RED + "This text is in red");
-     *     System.out.println(RESET_COLOR + "This text is back to default color");
+     * <p>
+     * System.out.println(ConsoleColors.RED + "This text is in red");
+     * System.out.println(RESET_COLOR + "This text is back to default color");
      */
     private static final String RESET_COLOR = ConsoleColors.RESET;
 
     /**
      * String constant that represents the log prefix for console output.
-     *
+     * <p>
      * The log prefix is a formatted string that is displayed at the beginning of each log message.
      * It includes the project name "CraftEssence" enclosed in brackets, and uses ANSI escape codes
      * to change the color and style of the console output.
-     *
+     * <p>
      * Usage example:
-     *
-     *     String logMessage = LOG_PREFIX + " Debug message";
-     *     System.out.println(logMessage);
+     * <p>
+     * String logMessage = LOG_PREFIX + " Debug message";
+     * System.out.println(logMessage);
      */
     private static final String LOG_PREFIX = BRACKET_COLOR + "[" + PROJECT_COLOR + "CraftEssence" + BRACKET_COLOR + "]" + RESET_COLOR;
 

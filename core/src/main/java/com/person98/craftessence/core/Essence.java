@@ -47,7 +47,7 @@ public interface Essence {
      * Retrieves the configuration instance for the specified class.
      *
      * @param clazz the class representing the configuration
-     * @param <T> the type of the configuration instance
+     * @param <T>   the type of the configuration instance
      * @return the configuration instance for the specified class, or null if it doesn't exist
      */
     @SuppressWarnings("unchecked")

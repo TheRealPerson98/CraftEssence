@@ -3,13 +3,9 @@ package com.person98.commonsessence.conf;
 
 import com.person98.commonsessence.invtory.menu.ConfigurableMenu;
 import com.person98.commonsessence.invtory.menu.EssenceMenuElement;
-
 import com.person98.craftessence.util.annotations.Configurable;
 import com.person98.craftessence.util.item.ItemBuilder;
-
 import org.bukkit.Material;
-
-import java.util.List;
 
 @Configurable(fileName = "lang")
 public class LangConf {

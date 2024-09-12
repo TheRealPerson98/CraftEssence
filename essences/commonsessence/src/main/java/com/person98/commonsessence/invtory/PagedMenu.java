@@ -1,12 +1,10 @@
 package com.person98.commonsessence.invtory;
 
-import com.person98.commonsessence.invtory.Menu;
 import com.person98.commonsessence.invtory.menu.ConfigurableMenu;
 import com.person98.commonsessence.user.User;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

@@ -1,12 +1,8 @@
 package com.person98.warpessence;
 
-import com.person98.commonsessence.CommonsEssence;
-import com.person98.commonsessence.event.Events;
 import com.person98.craftessence.core.Essence;
-import com.person98.craftessence.core.Instances;
 import com.person98.craftessence.util.annotations.EssenceInfo;
-import com.person98.craftessence.util.logging.EssenceLogger; // Assuming you have EssenceLogger for logging
-import org.bukkit.event.player.PlayerJoinEvent;
+import com.person98.craftessence.util.logging.EssenceLogger;
 
 @EssenceInfo(
         version = "1.0",

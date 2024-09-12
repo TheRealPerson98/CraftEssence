@@ -1,24 +1,22 @@
 package com.person98.craftessence.util.yaml;
 
+import com.google.gson.*;
 import com.person98.craftessence.util.ComponentUtil;
+import com.person98.craftessence.util.item.ConfigurableNBT;
 import com.person98.craftessence.util.item.ItemBuilder;
 import com.person98.craftessence.util.item.ItemHelper;
-import com.person98.craftessence.util.item.ConfigurableNBT;
 import com.person98.craftessence.util.item.Json;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import com.google.gson.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class ItemStackAdapter implements JsonDeserializer<ItemStack>, JsonSerializer<ItemStack> {
     private static final String MATERIAL = "material";

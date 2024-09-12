@@ -2,19 +2,17 @@ package com.person98.craftessence;
 
 import com.person98.craftessence.loader.EssenceLoader;
 import com.person98.craftessence.util.logging.ConsoleColors;
-import org.bukkit.plugin.java.JavaPlugin;
 import lombok.Getter;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class CraftEssence extends JavaPlugin {
 
-    @Getter
-    private static CraftEssence instance;
-
-    @Getter
-    private EssenceLoader essenceLoader;
-
     private static final String PLUGIN_AUTHOR = "Person98";
     private static final String PLUGIN_VERSION = "1.0 Beta";
+    @Getter
+    private static CraftEssence instance;
+    @Getter
+    private EssenceLoader essenceLoader;
 
     @Override
     public void onEnable() {
