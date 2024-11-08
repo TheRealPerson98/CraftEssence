@@ -7,6 +7,12 @@
   <strong>A module-based core plugin, designed to eliminate server bloat and offer a simple, flexible foundation for Minecraft developers.</strong>
 </p>
 
+YourKit supports open source projects with innovative and intelligent tools
+for monitoring and profiling Java and .NET applications.
+YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
+<a href="https://www.yourkit.com/dotnet-profiler/">YourKit .NET Profiler</a>,
+and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
+
 <p align="center">
   <a href="https://github.com/TheRealPerson98/CraftEssence/stargazers">
     <img src="https://img.shields.io/github/stars/TheRealPerson98/CraftEssence.svg?style=social&label=Star">
