@@ -8,17 +8,20 @@
 </p>
 
 <p align="center">
-<img src="https://www.yourkit.com/images/yklogo.png" alt="Asset 2">
+  <a href="https://www.yourkit.com">
+    <img src="https://www.yourkit.com/images/yklogo.png" alt="YourKit Logo">
+  </a>
 </p>
-<h1 align="center">
-YourKit 
-</h1
+<h1 align="center">YourKit</h1>
 <p align="center">
-YourKitsupports open source projects with innovative and intelligent tools
+YourKit supports open source projects with innovative and intelligent tools
 for monitoring and profiling Java and .NET applications.
 YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
 <a href="https://www.yourkit.com/dotnet-profiler/">YourKit .NET Profiler</a>,
 and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
+</p>
+<p align="center">
+We use YourKit Java Profiler to ensure CraftEssence maintains its high-performance standards. This powerful tool helps us identify and eliminate performance bottlenecks, optimize memory usage, and ensure our modular system runs as efficiently as possible. Thanks to YourKit's support, we can continue to deliver a lightweight and efficient plugin framework for the Minecraft community.
 </p>
 
 <p align="center">
